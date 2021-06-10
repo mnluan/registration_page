@@ -1,4 +1,23 @@
 <!DOCTYPE html>
+<?php
+if(isset($_POST['submit']))
+{
+    include_once('config.php');
+
+    $name = $_POST['name'];
+    $email = $_POST['email'];
+    $phone = $_POST['phone'];
+    $gender = $_POST['gender'];
+    $birth = $_POST['birth'];
+    $city = $_POST['city'];
+    $state = $_POST['state'];
+    $country = $_POST['country'];
+    $address = $_POST['address'];
+
+    $result = mysqli_query($connection, "INSERT INTO clients(name, email, phone, gender, birth, city, state, country, address)
+    VALUES ('$name', '$email', '$phone', '$gender', '$birth', '$city', '$state', '$country', '$address')");
+}
+?>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -9,7 +28,7 @@
 </head>
 <body>
     <div class = "box">
-        <form action = "">
+        <form action = "form.php" method = "POST">
             <fieldset>
                 <legend><b>Form</b></legend>
                 <br/>
@@ -33,12 +52,12 @@
                 <label for = "female">Female</label><br>
                 <input type = "radio" name = "gender" id = "male" value = "M" required>
                 <label for = "male">Male</label><br>
-                <input type = "radio" name = "gender" id = "other" value = "O" required>
+                <input type = "radio" name = "gender" id = "other" value = "O" required checked="checked">
                 <label for = "other">Other</label><br>
                 <br><br>
 
-                <label for="date"><b>Born date:</b></label>
-                <input type = "date" id = "date" name = "date" required>
+                <label for="birth"><b>Born date:</b></label>
+                <input type = "date" id = "birth" name = "birth" required>
 
                 <br>
                 <div class="inputbox">
@@ -61,7 +80,7 @@
                     <label for="address" class = "labelinput">Address</label>
                 </div>
                 <br>
-                <input type = "submit" id = "submit" name = "Submit">
+                <input type = "submit" id = "submit" name = "submit">
                 <br>
             </fieldset>
         </form>
